@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="form-signin py-5">
+    <form method="POST" action="/voter/create">
+        <h1 class="h3 mb-3 fw-normal">Add Voter</h1>
+        <div class="form-floating mb-2">
+            <input type="text" name="first_name" class="form-control" id="floatingInput" placeholder="Harry">
+            <label for="floatingInput">First Name</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" name="last_name" class="form-control" id="floatingInput" placeholder="Potter">
+            <label for="floatingInput">Last Name</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" name="matric_no" class="form-control" id="floatingInput" placeholder="1800100001">
+            <label for="floatingInput">Matric Number</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input type="text" name="department" class="form-control" id="floatingInput" placeholder="Computer Science">
+            <label for="floatingInput">Department</label>
+        </div>
+
+        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
+        
+    </form>
+    </main>
+{% endblock body %}

@@ -7,16 +7,28 @@
         <div class="nav-mobile"><a id="nav-toggle" href="../"><span></span></a></div>
         <ul class="nav-list">
           <li>
-            <a href = '/create'>Add a voter</a>
+            <a href = '/election/create'>Start Election</a>
             </li>
             <li>
-              <a href = "/start">Start Electoral Voting Process</a>
+              <a href = "/candidate/create">Add Candidate</a>
             <li>
-              <a href="/vote">Participate in Voting Process</a>
+              <a href="/voter/create">Add Voter</a>
             </li>
             <li>
-              <a href = "/end">End Voting Process</a>
-              </li>
+              <a href = "/elections">Elections</a>
+            </li>
+            {% if not session.admin %}
+            <li>
+              <a href = "/admin/register">Register</a>
+            </li>
+            <li>
+              <a href = "/admin/login">Login</a>
+            </li>
+            {% else %}
+            <li>
+              <a href = "/admin/logout">Logout</a>
+            </li>
+            {% endif %}
 
         </ul>
       </nav>

@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="container py-5">
+   <div class="">
+        <div class="py-3 px-3 bg-light">
+            <h3>{{election.title}}</h3>
+            <p class="text-muted text-small">Created by {{election.admin.first_name}} {{election.admin.last_name}} on {{election.created_at.strftime('%d-%m-%Y')}}</p>
+            <div>
+                {% if election.is_open %}
+                <button class="btn btn-primary disabled">See results</button>
+                {% else %}
+                <a class="btn btn-primary" href="/result/{{election.slug}}">See results</a>
+                {% endif %}
+                {% if election.admin.email == session.get("admin") and election.is_open %}
+                   
+                    <a class="btn btn-primary" href="/end/{{election.slug}}">End election</a>
+                    
+                {% endif %}
+            </div>
+            {% if election.is_open%}
+            <div class="py-5">
+                <h3>Candidates</h3>
+                {% for candidate in election.candidates %}
+                <div class="card py-3 px-4 rounded mt-4">
+                    <h4>{{candidate.first_name}} {{candidate.last_name}}</h4>
+                    <p>{{candidate.manifesto}}</p>
+                    <button class="btn btn-primary" onclick="show({{candidate.id}})">Vote</button>
+
+                    <form method="POST" action="/vote/{{candidate.id}}" hidden id="{{candidate.id}}">
+                        <div class="form-floating mb-2 mt-5">
+                            <input type="text" name="matric_no" class="form-control" id="floatingInput" placeholder="1800100001">
+                            <label for="floatingInput">Matric Number</label>
+                        </div>
+                        
+                        <button class="w-30 btn btn-primary" type="submit">Vote {{candidate.first_name}}</button>
+                        
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+   </div>
+</main>
+
+<script>
+    function show(id){
+        vote_form = document.getElementById(id)
+        vote_form.hidden = !vote_form.hidden
+    }
+</script>
+{% endblock body %}

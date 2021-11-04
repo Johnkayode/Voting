@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="form-signin py-5">
+    <form method="POST" action="/election/create">
+        <h1 class="h3 mb-3 fw-normal">Create Election</h1>
+        <div class="form-floating mb-2">
+            <input type="text" name="title" class="form-control" id="floatingInput" placeholder="">
+            <label for="floatingInput">Title</label>
+        </div>
+        
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Create</button>
+        
+    </form>
+    </main>
+{% endblock body %}

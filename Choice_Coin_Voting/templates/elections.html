@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<main class="container py-5">
+   <div class="">
+       {% for election in elections %}
+        <div class="card rounded py-3 px-3 bg-light">
+            <h3><a href="{{election.get_absolute_url}}">{{election.title}}</a></h3>
+            <p class="text-muted text-small">Created by {{election.admin.first_name}} {{election.admin.last_name}} on {{election.created_at.strftime('%d-%m-%Y')}}</p>
+        </div>
+       {% endfor %}
+   </div>
+</main>
+{% endblock body %}

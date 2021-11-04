@@ -14,20 +14,21 @@ from algosdk import account, encoding, mnemonic,transaction
 from algosdk.future.transaction import AssetTransferTxn, PaymentTxn
 from algosdk.v2client import algod
 import hashlib
+import random
 import matplotlib
 import matplotlib.pyplot as plt
 
 # Matplot parameters for the matplotlib function to generate a new plot.
 matplotlib.use('TkAgg')
-algod_address = "" # Put Algod Client address here
-algod_token = "" # Put Algod Token here
+algod_address = "https://testnet-algorand.api.purestake.io/ps2" # Put Algod Client address here
+algod_token = "gAYfMSHWPR5phDz2dq75w1kCIkUKfdO56DgpQSDw" # Put Algod Token here
 headers = {"X-API-Key": algod_token }
 # Initializes client for node.
 algod_client = algod.AlgodClient(algod_token,algod_address,headers)
 
 # Escrow creation.
-escrow_address = "" # Put in main fund address here
-escrow_mnemonic = "" # Put in main fund receiver_mnemonic here
+escrow_address = "XQ52337XYJMFNUM73IC5KSLG6UXYKMK3H36LW6RI2DRBSGIJRQBI6X6OYI" # Put in main fund address here
+escrow_mnemonic = "maximum shove federal random silver venture sister juice vacuum invite inmate play mouse deny wood often noodle plug erupt panic month sunset among absorb middle" # Put in main fund receiver_mnemonic here
 escrow_key = mnemonic.to_private_key(escrow_mnemonic)
 choice_id = 21364625 # Official Test Asset ID for Choice Coin
 
@@ -43,9 +44,11 @@ corporate_decision_two = ""
 # Clawback Address required to reset accounts to start new voting process.
 # Sets up accounts for both the regular election process and the corporate decision process. 
 # Add more accounts to adjust for more decisions.
-clawback_address = ""
-clawback_mnemonic = ""
+
+clawback_address = "MZVXNTLCZEGD4CGEC3RJQCGOTLUFWQCRYCCMNNR5CM363GKITAXJPBS7BM"
+clawback_mnemonic = "round spell install clock noodle also plate govern program arm deposit exclude recall forget job rate crash upset renew meat kit october horse able pull"
 clawback_key = mnemonic.to_private_key(clawback_mnemonic)
+
 
 # This function counts the number of Choice Coin in an account. 
 # It first fetches the account_info, and specifically searches among the assets that the account owns for Choice Coin.
@@ -105,6 +108,7 @@ def election_voting(vote):
 # The stake defines the ownership stake of the shareholder that is voting.
 def corporate_voting(vote,stake):
     message = ''
+    comment = ""
     stake = int(stake) # Define the ownership stake.
     amount = 100 * stake
     if vote == 'YES':

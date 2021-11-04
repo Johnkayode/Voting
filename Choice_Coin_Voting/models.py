@@ -26,7 +26,7 @@ class Election(db.Model):
     admin = db.relationship("Admin", backref=db.backref("elections", lazy="dynamic"))
 
     title = db.Column(db.String(100), nullable=False)
-    slug = db.Column(db.String(150), index=True, nullable=False, unique=True)
+    slug = db.Column(db.String(150), index=True, nullable=False, unique=True)  
     created_at = db.Column(db.DateTime, default=func.now())
     voters =  db.Column(db.Text, nullable=False)
     is_open = db.Column(db.Boolean, default=True)

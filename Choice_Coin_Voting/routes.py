@@ -170,10 +170,11 @@ def end(slug):
 	
 @app.route('/result/<slug>', methods = ['GET'])
 def result(slug):
-	# election = Election.query.filter_by(slug=slug).first()
+	election = Election.query.filter_by(slug=slug).first()
+	winner = max(election.candidates, key=lambda candidate:candidate.votes)
 	candidates = session.get("labels")
 	votes = session.get("votes")
-	return render_template("result.html", candidates=candidates, votes=votes)
+	return render_template("result.html", candidates=candidates, votes=votes, winner = winner)
 
 @app.route('/vote/<id>', methods = ['POST'])
 def vote(id):
